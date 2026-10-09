@@ -8,7 +8,7 @@
       .box {
         width: 70px;
         height: 70px;
-        background-color: teal;
+        background-color: salmon;
         font-size: 300%;
         text-align: center;
         user-select: none;
@@ -17,6 +17,10 @@
         top: 100px;
         /* Change me! */
         left: 0px;
+      }
+      
+      body {
+        background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQBDgMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIHA//EACUQAAICAgICAQUBAQAAAAAAAAABAhEhMRJBUWFxIjJCgZGhA//EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDh1YsheqAEALWAIajJqDjeG9GSxrsC0QJpMPLwBAVprYAgAApAAKq7IVprZABSFAYIABSFQYEBUrIABqEuMk6TrySgIVIJ00/BZSbbb2wDVGS310VpcU08gZLRCgWUeLp1+jIAFBABbBAAKleixjydLfoJ8Xin8oCMENOVpKlhUBZKVRcrprBmw5NkArd9EAApAAK23VkLZAAAApAVpYr9gQqBAKQtkAG3JuKT0tGCgQ1KLjJp0JxSlUZcl5qiXkCqLabWlsUqJb/pAKKIW8UBAAANNYsyVyb2wCyAGBYSlB8oumuyMhZScqt6wAReOMmSyk5bYEAAAGlVO1b69BY8AZBvji7jqyNegMg0qrKCVvoDIK68BAQpAAAAAAoEAAGvOdGSkA0oripN91RCADUIuUkltkap0yFAA3GUklS070Yk3bsCAAAAAAAAAFvFfsCAG7v7sYxQGCkNQk4tuLrFAQ2s45ozpEAMhTUI8mkqtussCaSfkyaaptGQNSjST8oyVOk0QAWNXnRABTcZyVU9ejzAFezUeP5IwANJ5VbD+27y+jIApAAAAAAACtp6VEBVFvQEKOhsCAFQBOq7+SydybSX6ElT610ROmmnkCFp1dY8iTtt3k0pYrNXbV4AwDWONVnyZA1KqVP5MgAAWiAaik5JN0vJOwlZANNLiqec4I4tJOsMUalaik9bQGAXoOsUBAC06vyBDWOPsyWgIAABSFAEKwk3oCFplS2mS6AhpOry9dGS2qeADa6CIABqCTu5Vj+k2QCmoQ5SSbUbe2YLsBWStUTTDYGnK4pUsdmQQC0QqDAsZUmQhQNRlTyk/kzsqi2m1WFezIGpVeCN2G/AWQBC0QAabwkZLYEL0QqdPQEBSAChFVXlWvAGSp0wxHDArePZkAADXH6U6xeyAQ0lh4Zkqk0mlp7AXRAABuM3FNKsqmRxpRdrPgmPDAgKkQCpW90VqPFVLPa8GS2BZJLTvLMlLGr+rXoDIK6soETIacUqqV2v4Eou7dVr2BksXT0QAbcm0ljBmr7ohbAMD30AIDUY8nV0ZAAACov9JGTi7Ww5N7YBkKldgCAAC26oEAFRWlV3+jIAAAAacm0k3oiq8mpRpclp6AypSWm0ajByuldK3kwacaSfkDIBYqwIClcGkBkAqwAFllVJrfZkDceNS5JvGK6MFdeSACkAFvFdAgApDcWk02rz2YAFogAAAAVuyAAajFPb4/JkoBljXJcnSMmpcfxvX+gV1xVO33gkHUrSuiFjV/VdegJJ2yFZr/mouX1y4ryBgFx2AIC09kAFIab+msbAl2CAADcZU8VrtWZ0wIAVKwIAANJWrshAABU1TtB9YAgKQAWyADSuqvDJpkAFbvIW86IXHH3YG2o0+Mm30Zew3j2ZAFWyACsgAAAAAABqO6IwAIAAKnWCyk5O2ABfwMAAC3QABkAAFQABm06hpO/PQAGJfc/kgAAAAXogAAAAAAB//9k=);
       }
 
       .board {
@@ -55,9 +59,10 @@
         box.on("click", handleBoxClick);
 
         // moves the Box to a new position on the screen along the X-Axis
-        function moveBoxTo(newPositionX) {
-          box.css("left", newPositionX);
-        }
+        function moveBoxTo(newPositionX, newPositionY) {
+        box.css("left", newPositionX);
+        box.css("top", newPositionY);
+}
 
         // changes the text displayed on the Box
         function changeBoxText(newText) {
@@ -72,7 +77,8 @@
         var positionX = 0;
         var points = 0;
         var speed = 10;
-
+        var positionY = 50;
+        var speedY = 10;
 
 
         /**
@@ -81,7 +87,7 @@
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-        moveBoxTo(positionX += speed)
+        moveBoxTo(positionX += speed, positionY += speedY)
         if (positionX >= boardWidth) {
         speed = speed * -1;
         }
