@@ -11,6 +11,7 @@ var Gamification = (function () {
   var REQUIRED_CIRCLE_COUNT = 50;
 
   // Private variables
+  var buffer = true
   var player1 = null;
   var player2 = null;
   var keys = {};
@@ -457,6 +458,14 @@ var Gamification = (function () {
           // Get actual radius values with proper calculation
           var player1Size = getActualRadius(player1);
           var otherSize = getActualRadius(otherCircle);
+          if (player1Size >= 200 && buffer) {
+            alert("Player 1: You win! CAUTION: Hitting ok will turn you into a black hole. You should probably reload the page")
+            buffer = false;
+          }
+          if (player1Size >= 200 && buffer) {
+            alert("Player 2: You win! CAUTION: Hitting ok will turn you into a black hole. You should probably reload the page")
+            buffer = false;
+          }
 
           // Add a small buffer to prevent edge cases (5% larger required to absorb)
           var absorptionThreshold = 1.05;
