@@ -105,19 +105,19 @@ Gamification.update();
         game.checkCirclePosition = function(circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-            if ( circle.x > canvas.width ) {
-                circle.x = 0;
+            if ( circle.x > canvas.width + 100) {
+                circle.x = -100;
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            if ( circle.x < 0) {
-                circle.x = canvas.width
+            if ( circle.x < -100) {
+                circle.x = canvas.width + 100
             }
-            if ( circle.y < 0) {
-                circle.y = canvas.height
+            if ( circle.y < -100) {
+                circle.y = canvas.height + 100
             }
-            if ( circle.y > canvas.height) {
-                circle.y = 0
+            if ( circle.y > canvas.height + 100) {
+                circle.y = -100
             }
 
 
